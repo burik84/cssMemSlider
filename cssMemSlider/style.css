@@ -28,9 +28,8 @@ body {
 
 .container {
   width: var(--slider-width);
-  height: 320px;
+  height: 480px;
   margin: 1rem auto;
-  background-color: chartreuse;
 }
 
 .slider__wrap {
@@ -51,20 +50,23 @@ body {
 .slider__wrap > input {
   display: none;
 }
+.slider__wrap-content,
+.slider__wrap-text{
+width: 100%;
+height: 100%;
+overflow: hidden;
+display: flex;
+flex-direction: row;
+}
+.slider__wrap-content{
+  grid-area: content;
+}
 .slider__content,
 .slider__description {
   display: flex;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100% * var(--number);
   height: 100%;
   transition: transform 1s ease;
-}
-.slider__content {
-  grid-area: content;
 }
 .slider__content .slide {
   display: inline-block;
@@ -88,13 +90,13 @@ body {
 .slider__content .slide-4 {
   background-image: url('https://raw.githubusercontent.com/burik84/cssMemSlider/gh-pages/cssMemSlider/assets/IMG4.jpg');
 }
-.slider__description {
+.slider__wrap-text{
   grid-area: description;
 }
 .slider__description .slide {
   width: var(--slider-width);
   height: 100%;
-  padding-right: 10rem;
+  padding-right: 11rem;
 }
 .slider__control {
   display: flex;
@@ -106,7 +108,6 @@ body {
 .slider__control label {
   position: relative;
   display: inline-block;
-  /* margin-right: 1.2rem; */
   padding: 1.4rem;
   cursor: pointer;
   transition: all 0.5s ease-out;
@@ -128,25 +129,25 @@ body {
   border: 1px solid var(--color-hover);
   background-color: var(--color-hover);
 }
-#r1:checked ~ .slider__content,
-#r1:checked ~ .slider__description {
+#r1:checked ~ .slider__wrap-content .slider__content,
+#r1:checked ~ .slider__wrap-text .slider__description {
   transform: translateX(0);
 }
 
-#r2:checked ~ .slider__content,
-#r2:checked ~ .slider__description {
+#r2:checked ~ .slider__wrap-content .slider__content,
+#r2:checked ~ .slider__wrap-text .slider__description {
   /* transform: translateX(var(--slider-width) * (-1)); */
   transform: translateX(-400px);
 }
 
-#r3:checked ~ .slider__content,
-#r3:checked ~ .slider__description {
+#r3:checked ~ .slider__wrap-content .slider__content,
+#r3:checked ~ .slider__wrap-text .slider__description {
   /* transform: translateX(var(--slider-width) * (-2)); */
   transform: translateX(-800px);
 }
 
-#r4:checked ~ .slider__content,
-#r4:checked ~ .slider__description {
+#r4:checked ~ .slider__wrap-content .slider__content,
+#r4:checked ~ .slider__wrap-text .slider__description {
   /* transform: translateX(var(--slider-width) * (-3)); */
   transform: translateX(-1200px);
 }
@@ -185,4 +186,8 @@ body {
   .slider__control label:last-of-type {
     margin-right: 0;
   }
+  .slider__description .slide {
+  text-align: center;
+  padding:0;
+}
 }
